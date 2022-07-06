@@ -105,6 +105,7 @@ function makeBarChart(type, axisValue, labelAlign, labelOffset) {
 
     let axesTitle = document.getElementById("row0_col0").textContent
     let chartTitle = document.getElementById("chartTitle").value
+    let chartSubTitle = document.getElementById("chartSubtitle").value
 
     let datasetValues = new Array()
    
@@ -223,7 +224,7 @@ function makeBarChart(type, axisValue, labelAlign, labelOffset) {
 
                 subtitle: {
                     display: true,
-                    text: "Chart Subtitle",
+                    text: chartSubTitle,
                     font: {
                         size: 16,
                         weight: 'bold',
@@ -248,6 +249,15 @@ function changeChartTitle() {
     chartGraphic.options.plugins.title.text = chartTitle
     chartGraphic.update()
 
+}
+
+function changeChartSubtitle() {
+
+    console.log(chartGraphic.options.plugins.subtitle.text)
+    const chartSubtitle = document.getElementById("chartSubtitle").value
+    chartGraphic.options.plugins.subtitle.text = chartSubtitle
+    chartGraphic.update()
+    console.log(chartGraphic.options.plugins.subtitle.text)
 }
 
 function generateRandomColor(){
