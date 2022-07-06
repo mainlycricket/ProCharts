@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Chart</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="index.css" type="text/css" />
+
+</head>
+
+<body>
+
+    <div id="rawData">
+
+        <textarea onfocusout="textareaChanged()" id="textData" placeholder="Paste tabular data here"></textarea>
+
+        <table id="data-table" class="table table-responsive"></table>
+
+        <br/>
+
+        <button id="btnStepChart" class="btn btn-primary" onClick="btnChartStep()">Next</button>
+
+    </div>
+
+    <div id="chartVisual">
+
+        <button id="btnDataStep" class="btn btn-danger" onclick="btnDataStep()">Edit Data</button> <br/> <br/>
+
+        <select id="chart-type" class="form-select" onchange="chartTypeChanged()">
+            <option value="none" disabled selected>Select Chart</option>
+            <option value="hbar">Horizontal Bar</option>
+            <option value="vbar">Vertical Bar</option>
+            <option value="line">Line</option>
+        </select>
+
+        <div>
+            <canvas id="chartCanva"></canvas>
+        </div>
+
+        <form>
+
+            <input type="text" id="chartTitle" class="form-control" value="Chart Title" onchange="changeChartTitle()" placeholder="Enter Chart Title" />
+            <input type="text" id="chartSubtitle" class="form-control" onchange="changeChartSubtitle()" placeholder="Enter Chart Subtitle" />
+
+        </form>
+
+        <button class="btn btn-success">Download Chart</button>
+
+    </div>
+
+    <script src="index.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.js" integrity="sha512-5m2r+g00HDHnhXQDbRLAfZBwPpPCaK+wPLV6lm8VQ+09ilGdHfXV7IVyKPkLOTfi4vTTUVJnz7ELs7cA87/GMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.0.0/chartjs-plugin-datalabels.min.js" integrity="sha512-R/QOHLpV1Ggq22vfDAWYOaMd5RopHrJNMxi8/lJu8Oihwi4Ho4BRFeiMiCefn9rasajKjnx9/fTQ/xkWnkDACg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</body>
+</html>
