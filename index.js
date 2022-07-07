@@ -28,6 +28,16 @@ function textareaChanged() {
             
             let cols = rows[i].split("\t")
 
+            if (i == 1 && cols.length > 2) {
+                document.getElementById("pie-option").disabled = true
+                document.getElementById("doughnut-option").disabled = true
+            }
+
+            else if (cols.length <= 2) {
+                document.getElementById("pie-option").disabled = false
+                document.getElementById("doughnut-option").disabled = false
+            }
+
             let dataRow = document.createElement("tr")
             dataRow.setAttribute("id", "Row" + i)
 
@@ -89,8 +99,14 @@ function chartTypeChanged() {
     else if (chartType == 'vbar')
         makeBarChart('bar', 'x', 'top', 0)
 
-        else if (chartType == 'line')
+    else if (chartType == 'line')
         makeBarChart('line', 'x', 'top', 0)
+
+    else if (chartType == 'pie')
+        makeBarChart('pie', 'x', 'top', 0)
+
+    else if (chartType == 'doughnut')
+        makeBarChart('doughnut', 'x', 'top', 0)
 
 }
 
@@ -137,12 +153,31 @@ function makeBarChart(type, axisValue, labelAlign, labelOffset) {
             values.push(dataValue)
             
         }
+
+        if (type == 'line') {
+            var borderColorValue = generateRandomColor()
+            var backgroundColorValue = '#d3e2e3'
+        }
+
+        else if (type == 'pie' || type == 'doughnut') {
+            var backgroundColorValue = new Array()
+            var borderColorValue = 'black'
+            for (let i = 1; i < rowsCount; i++) {
+                let backgroundColorItem = generateRandomColor()
+                backgroundColorValue.push(backgroundColorItem)
+            }
+        }
+
+        else {
+            var borderColorValue = 'black'
+            var backgroundColorValue = generateRandomColor()
+        }
         
         let objDataset = {
-            backgroundColor: generateRandomColor(),
+            backgroundColor: backgroundColorValue,
             data: [...values],
             label: colHeads[i - 1],
-            borderColor: 'black',
+            borderColor: borderColorValue,
             borderWidth: 1,
             datalabels: {
                 anchor: 'end',
@@ -171,10 +206,8 @@ function makeBarChart(type, axisValue, labelAlign, labelOffset) {
         type: type,
 
         data: {
-
             labels: rowHeads,
             datasets: datasetValues
-            
         },
 
         plugins: [ChartDataLabels],
@@ -209,7 +242,7 @@ function makeBarChart(type, axisValue, labelAlign, labelOffset) {
 
                 legend: {
                     display: true,
-                    position: 'right',
+                    position: 'right'
                 },
 
                 title: {
@@ -225,6 +258,9 @@ function makeBarChart(type, axisValue, labelAlign, labelOffset) {
                 subtitle: {
                     display: true,
                     text: chartSubTitle,
+                    padding: {
+                        bottom: 10
+                    },
                     font: {
                         size: 16,
                         weight: 'bold',
@@ -248,7 +284,6 @@ function changeChartTitle() {
     const chartTitle = document.getElementById("chartTitle").value
     chartGraphic.options.plugins.title.text = chartTitle
     chartGraphic.update()
-
 }
 
 function changeChartSubtitle() {
@@ -258,6 +293,12 @@ function changeChartSubtitle() {
     chartGraphic.options.plugins.subtitle.text = chartSubtitle
     chartGraphic.update()
     console.log(chartGraphic.options.plugins.subtitle.text)
+}
+
+function downloadChartImage() {
+    var download = document.getElementById("btn-download");
+    var image = document.getElementById("chartCanva").toDataURL("image/png").replace("image/png", "image/octet-stream");
+    download.setAttribute("href", image);
 }
 
 function generateRandomColor(){
