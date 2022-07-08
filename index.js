@@ -296,9 +296,11 @@ function changeChartSubtitle() {
 }
 
 function downloadChartImage() {
-    var download = document.getElementById("btn-download");
+    //var download = document.getElementById("btn-download");
     var image = document.getElementById("chartCanva").toDataURL("image/png").replace("image/png", "image/octet-stream");
-    download.setAttribute("href", image);
+    //download.setAttribute("href", image);
+    document.getElementById("chartImage").href = image
+    document.getElementById("chartImage").click()
 }
 
 function generateRandomColor(){
