@@ -297,12 +297,12 @@ function changeChartSubtitle() {
 
 function downloadChartImage() {
     //var download = document.getElementById("btn-download");
-    var image = document.getElementById("chartCanva").toDataURL("image/png")
+    var image = document.getElementById("chartCanva").toDataURL()
     //var image = document.getElementById("chartCanva").toDataURL("image/png").replace("image/png", "image/octet-stream");
     //download.setAttribute("href", image);
-    document.getElementById("chartImage").href = image
-    document.getElementById("chartImage").click()
-    //document.getElementById("chartImagePreview").src = image
+    //document.getElementById("chartImage").href = image
+    //document.getElementById("chartImage").click()
+    document.getElementById("chartImagePreview").src = image
 }
 
 function generateRandomColor(){
