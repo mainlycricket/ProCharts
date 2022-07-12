@@ -43,14 +43,29 @@ body {
 
 #chartVisual {
     display: none;
+    height: auto;
+    width: auto;
+}
+
+#btnStepChart:hover:after {
+    content: " >>";
+}
+
+#btnDataStep:hover:before {
+    content: "<< "
 }
 
 #chartCanva {
-    height: 800px;
+    height: 900px;
     width: 800px;
     margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
     /* max-width: 700px;
     max-height: 700px; */
+    border: 2px solid black;
+    border-radius: 5px;
+    display: none;
 }
 
 #chart-type {
@@ -65,4 +80,12 @@ body {
     text-align: center;
     margin: auto;
     margin-bottom: 20px;
+}
+
+#btn-download {
+    margin-bottom: 20px;
+}
+
+input[type=color] {
+    margin: 0 10px 0 10px;
 }

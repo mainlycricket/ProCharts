@@ -38,9 +38,10 @@
 
         <select id="chart-type" class="form-select" onchange="chartTypeChanged()">
             <option value="none" disabled selected>Select Chart</option>
-            <option value="hbar">Horizontal Bar</option>
-            <option value="vbar">Vertical Bar</option>
+            <option id="hbar-option" value="hbar">Horizontal Bar</option>
+            <option id="vbar-option" value="vbar">Vertical Bar</option>
             <option value="line">Line</option>
+            <!-- <option id="scatter-option" value="scatter" disabled>Scatter Plot</option> -->
             <option id="pie-option" value="pie">Pie</option>
             <option id="doughnut-option" value="doughnut">Doughnut</option>
         </select>
@@ -55,13 +56,15 @@
 
             <input type="text" id="chartSubtitle" value="Chart Subtitle" class="form-control" onchange="changeChartSubtitle()" placeholder="Enter Chart Subtitle" />
 
+            <p><b>Change Colours:</b></p>
+
+            <div id="colorPickerContainer"></div>
+
         </form>
 
-        <a class="btn btn-success" id="btn-download" download="ProCharts.png" onclick="downloadChartImage()">Download Chart</a>
+        <br/>
 
-        <a id="chartImage" download="ProCharts.png"></a>
-
-        <img id="chartImagePreview">
+        <a class="btn btn-success" id="btn-download" onclick="downloadChartImage()">Download Chart</a>
 
     </div>
 
